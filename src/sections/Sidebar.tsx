@@ -288,7 +288,7 @@ export function Sidebar({ currentView, onViewChange }: SidebarProps) {
               <p className="text-sm font-medium text-white truncate">{user?.name}</p>
               <p className="text-xs text-slate-400 truncate">{user?.email}</p>
               {isAdmin && (
-                <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-500/20 text-blue-400 mt-1">
+                <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-500/20 text-slate-50 mt-1">
                   Administrador
                 </span>
               )}
