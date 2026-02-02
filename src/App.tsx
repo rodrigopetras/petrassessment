@@ -5,7 +5,6 @@ import { Login } from '@/sections/Login';
 import { Sidebar } from '@/sections/Sidebar';
 import { Dashboard } from '@/sections/Dashboard';
 import { CompanyForm } from '@/sections/CompanyForm';
-import { Part1Questions } from '@/sections/Part1Questions';
 import { Part2Questions } from '@/sections/Part2Questions';
 import { AdminPanel } from '@/sections/AdminPanel';
 import { Toaster } from '@/components/ui/sonner';
@@ -165,12 +164,12 @@ function ViewAssessment({ onBack }: { onBack: () => void }) {
               <p className="font-medium">{company.razaoSocial}</p>
             </div>
             <div>
-              <p className="text-sm text-slate-500">Tamanho</p>
-              <p className="font-medium capitalize">{company.tamanhoEmpresa}</p>
-            </div>
-            <div>
               <p className="text-sm text-slate-500">Colaboradores</p>
               <p className="font-medium">{company.numeroColaboradores}</p>
+            </div>
+            <div>
+              <p className="text-sm text-slate-500">Servidores</p>
+              <p className="font-medium">{company.numeroServidores}</p>
             </div>
           </div>
         </CardContent>
@@ -201,9 +200,8 @@ function ViewAssessment({ onBack }: { onBack: () => void }) {
 // Main App Content
 function AppContent() {
   const [currentView, setCurrentView] = useState('dashboard');
-  const [assessmentStep, setAssessmentStep] = useState<'company' | 'part1' | 'part2'>('company');
-  useAuth();
-  const { assessment, company, createNewAssessment } = useAssessment();
+  const [assessmentStep, setAssessmentStep] = useState<'company' | 'part2'>('company');
+  const { company, createNewAssessment } = useAssessment();
 
   const handleNewAssessment = () => {
     createNewAssessment();
@@ -214,23 +212,21 @@ function AppContent() {
   const handleContinueAssessment = () => {
     if (!company) {
       setAssessmentStep('company');
-    } else if (assessment?.progress && assessment.progress < 50) {
-      setAssessmentStep('part1');
     } else {
+      // Se já tem empresa, vai direto para as perguntas CIS (Parte 2)
       setAssessmentStep('part2');
     }
     setCurrentView('view-assessment');
   };
 
   const handleCompanyComplete = () => {
-    setAssessmentStep('part1');
-  };
-
-  const handlePart1Complete = () => {
+    // Após salvar empresa, vai direto para as perguntas CIS (Parte 2)
     setAssessmentStep('part2');
+    toast.success('Dados salvos! Prosseguindo para o assessment.');
   };
 
   const handlePart2Complete = () => {
+    toast.success('Assessment concluído com sucesso!');
     setCurrentView('dashboard');
   };
 
@@ -273,28 +269,16 @@ function AppContent() {
               <CompanyForm onComplete={handleCompanyComplete} />
             </div>
           );
-        } else if (assessmentStep === 'part1') {
-          return (
-            <div className="space-y-6">
-              <div className="flex items-center gap-4">
-                <Button variant="outline" onClick={() => setAssessmentStep('company')}>
-                  <ArrowLeft className="h-4 w-4 mr-2" />
-                  Voltar
-                </Button>
-                <h2 className="text-2xl font-bold">Assessment - Parte 1</h2>
-              </div>
-              <Part1Questions onComplete={handlePart1Complete} />
-            </div>
-          );
         } else {
+          // Vai direto para Parte 2 (CIS Controls)
           return (
             <div className="space-y-6">
               <div className="flex items-center gap-4">
-                <Button variant="outline" onClick={() => setAssessmentStep('part1')}>
+                <Button variant="outline" onClick={() => setCurrentView('dashboard')}>
                   <ArrowLeft className="h-4 w-4 mr-2" />
                   Voltar
                 </Button>
-                <h2 className="text-2xl font-bold">Assessment - Parte 2</h2>
+                <h2 className="text-2xl font-bold">Assessment CIS Controls</h2>
               </div>
               <Part2Questions onComplete={handlePart2Complete} />
             </div>

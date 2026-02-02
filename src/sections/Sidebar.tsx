@@ -102,7 +102,7 @@ export function Sidebar({ currentView, onViewChange }: SidebarProps) {
     <div className="space-y-1">
       <Button
         variant={currentView === 'dashboard' ? 'default' : 'ghost'}
-        className="w-full justify-start"
+        className="w-full justify-start text-white hover:text-white hover:bg-slate-700"
         onClick={() => {
           onViewChange('dashboard');
           setIsMobileMenuOpen(false);
@@ -114,7 +114,7 @@ export function Sidebar({ currentView, onViewChange }: SidebarProps) {
       
       <Button
         variant={currentView === 'new-assessment' ? 'default' : 'ghost'}
-        className="w-full justify-start"
+        className="w-full justify-start text-white hover:text-white hover:bg-slate-700"
         onClick={() => {
           createNewAssessment();
           onViewChange('new-assessment');
@@ -127,7 +127,7 @@ export function Sidebar({ currentView, onViewChange }: SidebarProps) {
       
       <Button
         variant={currentView === 'view-assessment' ? 'default' : 'ghost'}
-        className="w-full justify-start"
+        className="w-full justify-start text-white hover:text-white hover:bg-slate-700"
         onClick={() => {
           onViewChange('view-assessment');
           setIsMobileMenuOpen(false);
@@ -139,7 +139,7 @@ export function Sidebar({ currentView, onViewChange }: SidebarProps) {
       
       <Button
         variant="ghost"
-        className="w-full justify-start"
+        className="w-full justify-start text-white hover:text-white hover:bg-slate-700"
         onClick={() => {
           handleExport();
           setIsMobileMenuOpen(false);
@@ -152,14 +152,14 @@ export function Sidebar({ currentView, onViewChange }: SidebarProps) {
       {isAdmin && (
         <>
           <div className="pt-4 pb-2">
-            <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider px-3">
+            <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider px-3">
               Administração
             </p>
           </div>
           
           <Button
             variant={currentView === 'admin-users' ? 'default' : 'ghost'}
-            className="w-full justify-start"
+            className="w-full justify-start text-white hover:text-white hover:bg-slate-700"
             onClick={() => {
               onViewChange('admin-users');
               setIsMobileMenuOpen(false);
@@ -171,7 +171,7 @@ export function Sidebar({ currentView, onViewChange }: SidebarProps) {
           
           <Button
             variant={currentView === 'admin-questions' ? 'default' : 'ghost'}
-            className="w-full justify-start"
+            className="w-full justify-start text-white hover:text-white hover:bg-slate-700"
             onClick={() => {
               onViewChange('admin-questions');
               setIsMobileMenuOpen(false);
@@ -183,7 +183,7 @@ export function Sidebar({ currentView, onViewChange }: SidebarProps) {
           
           <Button
             variant={currentView === 'admin-assessments' ? 'default' : 'ghost'}
-            className="w-full justify-start"
+            className="w-full justify-start text-white hover:text-white hover:bg-slate-700"
             onClick={() => {
               onViewChange('admin-assessments');
               setIsMobileMenuOpen(false);
@@ -288,7 +288,7 @@ export function Sidebar({ currentView, onViewChange }: SidebarProps) {
               <p className="text-sm font-medium text-white truncate">{user?.name}</p>
               <p className="text-xs text-slate-400 truncate">{user?.email}</p>
               {isAdmin && (
-                <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-500/20 text-slate-50 mt-1">
+                <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-500/20 text-blue-400 mt-1">
                   Administrador
                 </span>
               )}
@@ -305,7 +305,7 @@ export function Sidebar({ currentView, onViewChange }: SidebarProps) {
         <div className="p-4 border-t border-slate-800">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="w-full justify-between">
+              <Button variant="ghost" className="w-full justify-between text-white hover:text-white hover:bg-slate-700">
                 <span className="flex items-center">
                   <Settings className="mr-2 h-4 w-4" />
                   Configurações

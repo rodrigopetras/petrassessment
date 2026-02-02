@@ -129,14 +129,10 @@ export function Dashboard({ onNewAssessment, onContinueAssessment, onViewAssessm
               <Progress value={progress} className="h-2" />
             </div>
             
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-4">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 pt-4">
               <div className="p-3 bg-slate-50 rounded-lg">
                 <p className="text-xs text-slate-500">CNPJ</p>
                 <p className="font-medium truncate">{company?.cnpj || '-'}</p>
-              </div>
-              <div className="p-3 bg-slate-50 rounded-lg">
-                <p className="text-xs text-slate-500">Tamanho</p>
-                <p className="font-medium capitalize">{company?.tamanhoEmpresa || '-'}</p>
               </div>
               <div className="p-3 bg-slate-50 rounded-lg">
                 <p className="text-xs text-slate-500">Colaboradores</p>

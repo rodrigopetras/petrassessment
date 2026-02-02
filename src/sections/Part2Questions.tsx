@@ -19,7 +19,7 @@ interface Part2QuestionsProps {
 }
 
 export function Part2Questions({ onComplete }: Part2QuestionsProps) {
-  const { company, answers, setAnswer, getProgress, getMissingFields, submitAssessment, getFilteredQuestions } = useAssessment();
+  const { answers, setAnswer, getProgress, getMissingFields, submitAssessment, getFilteredQuestions } = useAssessment();
   const [localAnswers, setLocalAnswers] = useState<Record<string, any>>({});
   const [maturityLevels, setMaturityLevels] = useState<Record<string, number>>({});
   const [showSubmitDialog, setShowSubmitDialog] = useState(false);
@@ -193,15 +193,12 @@ export function Part2Questions({ onComplete }: Part2QuestionsProps) {
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
-          <h2 className="text-2xl font-bold">Parte 2: CIS Controls</h2>
+          <h2 className="text-2xl font-bold">CIS Controls</h2>
           <p className="text-slate-500">
-            Avaliação baseada nos controles CIS para empresas {company?.tamanhoEmpresa}
+            Avaliação baseada nos controles CIS para segurança da informação
           </p>
         </div>
         <div className="flex items-center gap-4">
-          <Badge variant="outline" className="text-sm">
-            {filteredQuestions.length} perguntas
-          </Badge>
           <div className="flex items-center gap-2">
             <span className="text-sm text-slate-500">Progresso:</span>
             <span className="text-sm font-medium">{progress}%</span>

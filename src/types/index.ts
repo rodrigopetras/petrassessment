@@ -43,6 +43,7 @@ export interface Company {
 }
 
 export interface ServerInfo {
+  id?: string;
   versao: string;
   tipo: string;
   quantidade: number;
